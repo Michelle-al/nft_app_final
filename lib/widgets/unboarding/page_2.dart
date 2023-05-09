@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nft_app_final/widgets/my_wallet.dart';
 
 class Page2 extends StatelessWidget {
   Page2({
@@ -78,7 +79,12 @@ class Page2 extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 2),
             child: Row(children: [
               TextButton(
-                  onPressed: () => print("Hello"),
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyWalletScreen(
+                            title: 'Argent Facile NFT')),
+                      ),
                   child: const Text("PASSER",
                   style: TextStyle(
                   fontWeight: FontWeight.bold,
