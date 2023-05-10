@@ -5,7 +5,6 @@ import 'package:nft_app_final/requete_http.dart';
 import 'package:nft_app_final/widgets/unboarding/unboarding.dart';
 import 'widgets/my_wallet.dart';
 
-
 // GoRouter configuration
 // final _router = GoRouter(
 //   routes: [
@@ -41,19 +40,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         // textTheme: GoogleFonts.r
-        scaffoldBackgroundColor: Colors.green,
+        // scaffoldBackgroundColor: Colors.green,
         fontFamily: 'Roboto',
         textTheme: const TextTheme(
           displayMedium: TextStyle(fontSize: 20.0, fontFamily: 'Roboto'),
           displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          titleLarge: TextStyle(fontSize: 20.0, fontFamily: 'Roboto', color: Colors.white),
+          titleLarge: TextStyle(
+              fontSize: 20.0, fontFamily: 'Roboto', color: Colors.white),
           bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),
-      
       darkTheme: ThemeData.dark(),
     );
-   
   }
 }
 
@@ -68,19 +66,11 @@ class _AppWrapperState extends State<AppWrapper> {
   bool skipOnboarding = false;
   @override
   Widget build(BuildContext context) {
-    if(skipOnboarding == true) {
-      return OnboardingPager(); 
-    }else {
-      return 
-      RickAndMortyApi();
+    if (skipOnboarding == true) {
+      return OnboardingPager();
+    } else {
+      return RickAndMortyApi();
       // MyWalletScreen(title: 'Argent Facile NFT');
     }
-    
-
   }
 }
-
-
-
-
-
