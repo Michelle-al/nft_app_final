@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft_app_final/widgets/nav-drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyWalletScreen extends StatefulWidget {
   const MyWalletScreen({super.key, required this.title});

@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.green,
         fontFamily: 'Roboto',
         textTheme: const TextTheme(
-          displayMedium: TextStyle(fontSize: 20.0, fontFamily: 'Roboto', color: Colors.white),
+          displayMedium: TextStyle(fontSize: 20.0, fontFamily: 'Roboto'),
           displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           titleLarge: TextStyle(fontSize: 20.0, fontFamily: 'Roboto', color: Colors.white),
           bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
