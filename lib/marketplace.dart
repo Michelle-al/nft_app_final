@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:nft_app_final/character.dart';
+import 'package:nft_app_final/rarete.dart';
 
 class RickAndMortyApi extends StatefulWidget {
   const RickAndMortyApi({super.key});
@@ -141,17 +142,35 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 14),
-                              child: Chip(
-                                  label: const Text('rare'),
-                                  shape: ContinuousRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(8)))),
+                              child: _fillChip(rarete(), color())
                             )
                           ],
                         ),
                         _textColumn('Aperçu dans', character.origin.name,
                             Colors.black54),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left:14),
+                                child: Icon(Icons.currency_bitcoin, size: 18,),
+                              ),
+                              Text(price(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)
+                            ],),
+                            MaterialButton(
+                              onPressed: () =>print('coucou'),
+                              child: Text(
+                                "ACHETER",
+                                style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF6200EE),
+                                fontSize: 18)
+                              ),
+                            )
+                        ],),
                       ]),
+                      
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
@@ -166,6 +185,7 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
           // By default, show a loading spinner.
           return const CircularProgressIndicator();
         },
+        
       ),
       // body: Center(
       //   child: MaterialButton(
@@ -210,5 +230,18 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
         ),
       ],
     );
+  }
+
+   _fillChip(String text, Color color) {
+    
+    return Chip(
+      backgroundColor: color,
+      label: Text(text),
+      shape: ContinuousRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(8)
+        ),
+    
+    ));
   }
 }

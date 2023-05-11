@@ -3,6 +3,8 @@
 //     final characterResult = characterResultFromJson(jsonString);
 
 import 'dart:convert';
+import 'dart:ffi';
+import 'dart:math';
 
 CharacterResult characterResultFromJson(String str) => CharacterResult.fromJson(json.decode(str));
 
@@ -69,6 +71,7 @@ class Result {
     List<String> episode;
     String url;
     DateTime created;
+    
 
     Result({
         required this.id,
@@ -169,4 +172,11 @@ class EnumValues<T> {
         reverseMap = map.map((k, v) => MapEntry(v, k));
         return reverseMap;
     }
+}
+
+  String price() {
+  int randomNumber = Random().nextInt(20) + 1; // from 1 to 10 included
+  String price = double.parse('0.1${randomNumber}').toStringAsFixed(2);
+  return price;
+
 }
