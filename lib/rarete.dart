@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:nft_app_final/character.dart';
 
 
     // Random random = new Random();
@@ -17,53 +18,42 @@ import 'package:flutter/material.dart';
 //    lightBlue, 
 // }
 
-int randomCharacter() {
-  Random random = Random();
-  int randomNumber = random.nextInt(2); // from 0 to 2 included
-  return randomNumber;
-}
+
  
 
-Color  color() {
-  switch(randomCharacter()) {
+Color  color(Rarete rarete) {
+  switch(rarete) {
     
-    case 0: {
+    case Rarete.legendaire: {
       return Colors.deepPurpleAccent;
     }
-    case 1: {
+    case Rarete.rare: {
       return Colors.lightGreen;
     }
-    case 2: {
+    case Rarete.commun: {
       return Colors.lightBlue;
     }
-    default: {
-      return Colors.yellow;
-    }
+   
   }
 }
 
-
-String rarete() {
-  randomCharacter();
-   switch (randomCharacter()) {
-    case 0 :
+  
+ getRarete(Rarete rarete) {
+  switch (rarete) {
+    case  Rarete.legendaire:
       {
         return "Légendaire";
       }
-     
-    case 1:
-      {
-        return "Rare";
-      }
-     
-    case 2:
-      {
-        return "Commun";
-      }
-    default:
-      return "Inconnu";
       
+    case Rarete.rare:
+       return "Rare";
+      
+    case Rarete.commun:
+      return "Commun";
   }
-  
 }
+  
+   
+  
+
 

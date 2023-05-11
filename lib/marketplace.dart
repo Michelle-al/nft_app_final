@@ -142,7 +142,7 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 14),
-                              child: _fillChip(rarete(), color())
+                              child: _fillChip(getRarete(character.rarete), color(character.rarete))
                             )
                           ],
                         ),
@@ -156,7 +156,7 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
                                 padding: const EdgeInsets.only(left:14),
                                 child: Icon(Icons.currency_bitcoin, size: 18,),
                               ),
-                              Text(price(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)
+                              Text(createPrice(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),)
                             ],),
                             MaterialButton(
                               onPressed: () =>print('coucou'),

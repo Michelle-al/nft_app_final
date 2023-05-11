@@ -71,7 +71,8 @@ class Result {
     List<String> episode;
     String url;
     DateTime created;
-    
+    Rarete rarete;
+    String price;
 
     Result({
         required this.id,
@@ -86,6 +87,9 @@ class Result {
         required this.episode,
         required this.url,
         required this.created,
+        required this.rarete,
+        required this.price
+
     });
 
     factory Result.fromJson(Map<String, dynamic> json) => Result(
@@ -100,7 +104,10 @@ class Result {
         image: json["image"],
         episode: List<String>.from(json["episode"].map((x) => x)),
         url: json["url"],
-        created: DateTime.parse(json["created"]),
+        created: DateTime.parse(json["created"]), 
+        rarete: randomRarete(),
+        price: createPrice(),
+
     );
 
     Map<String, dynamic> toJson() => {
@@ -116,6 +123,8 @@ class Result {
         "episode": List<dynamic>.from(episode.map((x) => x)),
         "url": url,
         "created": created.toIso8601String(),
+        "rarete": rarete,
+        "price": price
     };
 }
 
@@ -126,6 +135,18 @@ final genderValues = EnumValues({
     "Male": Gender.MALE,
     "unknown": Gender.UNKNOWN
 });
+
+enum Rarete { legendaire, rare, commun }
+ randomRarete() {
+  Random random = Random();
+   var randomNumber = random.nextInt(Rarete.values.length); // from 0 to 2 included
+  return Rarete.values[randomNumber];
+
+}// final rareteValues = EnumValues({
+//     "Légendaire": Rarete.legendaire,
+//     "Rare": Rarete.rare,
+//     "Commun": Rarete.commun
+// });
 
 class Location {
     String name;
@@ -174,7 +195,9 @@ class EnumValues<T> {
     }
 }
 
-  String price() {
+
+
+  String createPrice() {
   int randomNumber = Random().nextInt(20) + 1; // from 1 to 10 included
   String price = double.parse('0.1${randomNumber}').toStringAsFixed(2);
   return price;
