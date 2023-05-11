@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nft_app_final/widgets/nav-drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../marketplace.dart';
+
 class MyWalletScreen extends StatefulWidget {
   const MyWalletScreen({super.key, required this.title});
 
@@ -12,7 +14,7 @@ class MyWalletScreen extends StatefulWidget {
 }
 
 class _MyWalletScreenState extends State<MyWalletScreen> {
-  final double _btcToWin = 0.1;
+  final num _btcToWin = 0.1;
   num _myWallet = 0.0;
   String _myWalletToString = '0.0';
 
@@ -34,10 +36,9 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
 
   void _btcToamountToSell() {
     setState(() {
-      final double amountToSell =
-          double.parse(_amountToSellController.text) * 25746.49;
-      if (_myWallet >= double.parse(_amountToSellController.text)) {
-        _myWallet -= double.parse(_amountToSellController.text);
+      num amountToSell = num.parse(_amountToSellController.text) * 25746.49;
+      if (_myWallet >= num.parse(_amountToSellController.text)) {
+        _myWallet -= num.parse(_amountToSellController.text);
         _myWalletToString = _myWallet.toStringAsFixed(1);
         _myWalletInEuros = _myWalletInEuros + amountToSell;
         _myWalletInEurosTostring = _myWalletInEuros.toStringAsFixed(1);
@@ -65,10 +66,10 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
     });
   }
 
-  String _amountToSell = 'X';
+  String _amountToSell = '0';
   void _amountToSellInEuros() {
-    _amountToSell = (double.parse(_amountToSellController.text) * 25746.49)
-        .toStringAsFixed(2);
+    num inputValue = num.parse(_amountToSellController.text);
+    _amountToSell = (inputValue * 25746.49).toStringAsFixed(1);
   }
 
   @override
@@ -94,12 +95,23 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
       drawer: NavDrawer(),
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.white,
-        ),
+        backgroundColor: Colors.deepPurpleAccent,
+        // leading:
         title: Text(widget.title),
-        actions: const <Widget>[],
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      const MyWalletScreen(title: 'Argent Facile NFT')),
+            ),
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -107,7 +119,41 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(18.5),
+              padding: const EdgeInsets.fromLTRB(0, 7, 0, 7),
+              child: Center(
+                  child: MaterialButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RickAndMortyApi()),
+                ),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(35))),
+                textColor: Colors.deepPurpleAccent,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      child: Text(
+                        'PLACE DE MARCHE NFT',
+                        style: TextStyle(
+                            letterSpacing: 1.25, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Icon(
+                      Icons.storefront,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ],
+                ),
+              )),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18.5, 15, 18.5, 18.5),
               child: Container(
                 height: data.size.height / 4,
                 width: double.maxFinite,
@@ -205,7 +251,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                 onPressed: () => {_btcToamountToSell()},
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(35))),
-                textColor: Colors.deepPurple,
+                textColor: Colors.deepPurpleAccent,
                 color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),

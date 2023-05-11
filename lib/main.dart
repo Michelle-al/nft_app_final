@@ -69,8 +69,7 @@ class _AppWrapperState extends State<AppWrapper> {
     if (skipOnboarding == true) {
       return OnboardingPager();
     } else {
-      return RickAndMortyApi();
-      // MyWalletScreen(title: 'Argent Facile NFT');
+      return MyWalletScreen(title: 'Argent Facile NFT');
     }
   }
 }
