@@ -110,11 +110,8 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
                                           Padding(
                                             padding:
                                                 const EdgeInsets.only(top: 14),
-                                            child: Icon(
-                                              Icons.circle_rounded,
-                                              size: 10,
-                                              color: Colors.red,
-                                            ),
+                                            child:
+                                                _status(character.status.name),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
@@ -212,23 +209,6 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
           return const CircularProgressIndicator();
         },
       ),
-      // body: Center(
-      //   child: MaterialButton(
-      //                 onPressed: () => print(getCharacters()),
-      //                 shape: const RoundedRectangleBorder(
-      //                     borderRadius: BorderRadius.all(Radius.circular(35))),
-      //                 textColor: Colors.white,
-      //                 color: Colors.tealAccent[400],
-      //                 child: const Padding(
-      //                   padding:
-      //                       EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      //                   child: Text(
-      //                     'Tester',
-      //                     style: TextStyle(letterSpacing: 1.25),
-      //                   ),
-      //                 ),
-      //               )
-      // )
     );
   }
 
@@ -257,7 +237,7 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
     );
   }
 
-  _fillChip(String text, Color color) {
+  dynamic _fillChip(String text, Color color) {
     return Chip(
         backgroundColor: color,
         label: Text(
@@ -267,5 +247,24 @@ class _RickAndMortyApiState extends State<RickAndMortyApi> {
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ));
+  }
+
+  dynamic _status(dynamic status) {
+    dynamic _icon(Color color) {
+      return Icon(
+        Icons.circle_rounded,
+        size: 10,
+        color: color,
+      );
+    }
+
+    switch (status) {
+      case "ALIVE":
+        return _icon(Colors.green);
+      case "DEAD":
+        return _icon(Colors.red);
+      default:
+        return _icon(Colors.grey);
+    }
   }
 }
